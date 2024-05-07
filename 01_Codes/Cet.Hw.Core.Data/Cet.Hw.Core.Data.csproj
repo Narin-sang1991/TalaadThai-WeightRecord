@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A21B7A29-7536-4FC8-AF10-6BC129C548A3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cet.Hw.Core.Data</RootNamespace>
+    <AssemblyName>Cet.Hw.Core.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\References\EntityFramework6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
+      <HintPath>..\References\EntLib5\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=4.1.0.0, Culture=neutral, PublicKeyToken=e44a2bc38ed2c13c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\EntLib5\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\References\EntLib5\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\EntLib5\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="PrismWeb">
+      <HintPath>..\References\PrismWeb\PrismWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="PrismWebUnityExtensions">
+      <HintPath>..\References\PrismWeb\PrismWebUnityExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConfigCategoryHwEntityTypeConfiguration.cs" />
+    <Compile Include="ConfigurationIntroductory.cs" />
+    <Compile Include="DbContextInitializer.cs" />
+    <Compile Include="FileExtensionEntityTypeConfiguration.cs" />
+    <Compile Include="ConfigurationHwEntityTypeConfiguration.cs" />
+    <Compile Include="FileInfoEntityTypeConfiguration.cs" />
+    <Compile Include="FileInfoIntroductory.cs" />
+    <Compile Include="HwEntityTypeConfiguration.cs" />
+    <Compile Include="HwUnitOfWork.cs" />
+    <Compile Include="LanguageEntityTypeConfiguration.cs" />
+    <Compile Include="MenuEntityTypeConfiguration.cs" />
+    <Compile Include="MenuIntroductory.cs" />
+    <Compile Include="MenuTranslateEntityTypeConfiguration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserEntityTypeConfiguration.cs" />
+    <Compile Include="OuIntroductory.cs" />
+    <Compile Include="UserIntroductory.cs" />
+    <Compile Include="OrganizationUnitEntityTypeConfiguration.cs" />
+    <Compile Include="UserTokenEntityTypeConfiguration.cs" />
+    <Compile Include="UserTokenIntroductory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cet.Core.Web\Cet.Core.Web.csproj">
+      <Project>{c4c97c9e-4c7d-4856-b84e-d5a0ddb64361}</Project>
+      <Name>Cet.Core.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cet.Core\Cet.Core.csproj">
+      <Project>{3a9f6890-3d54-49e8-9482-af67786c0da8}</Project>
+      <Name>Cet.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cet.EntityFramework.Adaptor\Cet.EntityFramework.Adaptor.csproj">
+      <Project>{b3acabb4-7a6b-451d-b8c4-b446be54da57}</Project>
+      <Name>Cet.EntityFramework.Adaptor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cet.Hw.Core.Domain\Cet.Hw.Core.Domain.csproj">
+      <Project>{dc70cb6e-094d-4a81-b383-eba08bfa82c3}</Project>
+      <Name>Cet.Hw.Core.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cet.Hw.Core\Cet.Hw.Core.csproj">
+      <Project>{9fb76912-0215-4bb2-acbb-d62e84c7ca54}</Project>
+      <Name>Cet.Hw.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
