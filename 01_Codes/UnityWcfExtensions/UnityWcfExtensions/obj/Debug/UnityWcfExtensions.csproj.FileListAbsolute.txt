@@ -1,0 +1,13 @@
+D:\2020_Works\TalaadThai-WeightRecord\trunk\01_Codes\UnityWcfExtensions\UnityWcfExtensions\bin\Debug\UnityWcfExtensions.dll
+D:\2020_Works\TalaadThai-WeightRecord\trunk\01_Codes\UnityWcfExtensions\UnityWcfExtensions\bin\Debug\UnityWcfExtensions.pdb
+D:\2020_Works\TalaadThai-WeightRecord\trunk\01_Codes\UnityWcfExtensions\UnityWcfExtensions\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+D:\2020_Works\TalaadThai-WeightRecord\trunk\01_Codes\UnityWcfExtensions\UnityWcfExtensions\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+D:\2020_Works\TalaadThai-WeightRecord\trunk\01_Codes\UnityWcfExtensions\UnityWcfExtensions\bin\Debug\Microsoft.Practices.Unity.dll
+D:\2020_Works\TalaadThai-WeightRecord\trunk\01_Codes\UnityWcfExtensions\UnityWcfExtensions\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+D:\2020_Works\TalaadThai-WeightRecord\trunk\01_Codes\UnityWcfExtensions\UnityWcfExtensions\bin\Debug\Microsoft.Practices.Unity.pdb
+D:\2020_Works\TalaadThai-WeightRecord\trunk\01_Codes\UnityWcfExtensions\UnityWcfExtensions\bin\Debug\Microsoft.Practices.Unity.Configuration.pdb
+D:\2020_Works\TalaadThai-WeightRecord\trunk\01_Codes\UnityWcfExtensions\UnityWcfExtensions\obj\Debug\UnityWcfExtensions.dll
+D:\2020_Works\TalaadThai-WeightRecord\trunk\01_Codes\UnityWcfExtensions\UnityWcfExtensions\obj\Debug\UnityWcfExtensions.pdb
+D:\2020_Works\TalaadThai-WeightRecord\trunk\01_Codes\UnityWcfExtensions\UnityWcfExtensions\obj\Debug\UnityWcfExtensions.csproj.CoreCompileInputs.cache
+D:\2020_Works\TalaadThai-WeightRecord\trunk\01_Codes\UnityWcfExtensions\UnityWcfExtensions\obj\Debug\UnityWcfExtensions.csproj.CopyComplete
+D:\2020_Works\TalaadThai-WeightRecord\trunk\01_Codes\UnityWcfExtensions\UnityWcfExtensions\obj\Debug\UnityWcfExtensions.csproj.AssemblyReference.cache
