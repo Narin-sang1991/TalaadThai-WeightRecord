@@ -1,0 +1,62 @@
+﻿<smartClient:UnityViewBase x:Class="DemoTaladThaiWg.Shell.SerialPortInfoDetectorView"
+     xmlns="http://schemas.microsoft.com/netfx/2009/xaml/presentation" 
+     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+     xmlns:local="clr-namespace:DemoTaladThaiWg.Shell"                     
+     xmlns:localVM="clr-namespace:DemoTaladThaiWg.Shell.ViewModels" 
+     xmlns:smartClient="clr-namespace:Cet.SmartClient.Client;assembly=Cet.SmartClient.Client"                 
+     xmlns:vab="clr-namespace:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF;assembly=Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF"
+     xmlns:Engine="clr-namespace:WPFLocalizeExtension.Engine;assembly=WPFLocalizeExtension"
+     Engine:LocalizeDictionary.DesignCulture="en-GB" mc:Ignorable="d" Name="ctlHomePageView"
+     xmlns:lex="http://schemas.root-project.org/xaml/presentation" Background="Transparent" >
+    <DockPanel LastChildFill="True">
+        <Grid DockPanel.Dock="Left" VerticalAlignment="Top" HorizontalAlignment="Left" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="8*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition  />
+            </Grid.ColumnDefinitions>
+
+            <telerik:RadComboBox Name="clrComportNamse" Grid.Row="0" Grid.Column="0" ItemsSource="{Binding ComportNames}" DisplayMemberPath="Item2" SelectedValuePath="Item2" Margin="5,10,5,10"
+                                             SelectedValue="{Binding ComportName, Mode=TwoWay}" HorizontalAlignment="Right" MinWidth="120" />
+
+            <telerik:DockingPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" Background="Black" Margin="5,10,5,10"
+                                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <telerik:Label  Style="{StaticResource InterfaceDisplayStyle}" Padding="10,0,10,0" FontSize="40" Margin="0"  MinWidth="40" MinHeight="50" 
+                                    HorizontalAlignment="Right" Content="{Binding RS232Input.WeightDisplay, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </telerik:DockingPanel>
+
+            <telerik:Label Style="{StaticResource InterfaceDisplayStyle}" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="White" BorderThickness="1"
+                                               Padding="10,5" Margin="7,11,0,0" Background="Black" Content="น้ำหนัก"/>
+
+            <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal">
+                <telerik:DataFormDataField  Label="Start Text" DataMemberBinding="{Binding StartText, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" MinWidth="250" />
+                <telerik:DataFormDataField  Label="End Text" DataMemberBinding="{Binding EndText, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" MinWidth="250" />
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Orientation="Horizontal">
+                <telerik:DataFormDataField  Label="Start String" DataMemberBinding="{Binding StartSubStr, Mode=TwoWay, UpdateSourceTrigger=LostFocus, StringFormat=N0}" MinWidth="250" />
+                <telerik:DataFormDataField  Label="End String" DataMemberBinding="{Binding EndSubStr, Mode=TwoWay, UpdateSourceTrigger=LostFocus, StringFormat=N0}" MinWidth="250" />
+            </StackPanel>
+            <DockPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" >
+                <telerik:RadButton DockPanel.Dock="Left" Content="Set And Start" Padding="10" Margin="10" Command="{Binding StartCommand}"/>
+                <telerik:RadButton DockPanel.Dock="Right" Content="Stop" Padding="10" Margin="10" Command="{Binding StopCommand}"/>
+            </DockPanel>
+        </Grid>
+
+        <telerik:RadWatermarkTextBox Text="{Binding StrInput,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" 
+                                     VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalAlignment="Left"
+                                     AcceptsReturn="True" IsReadOnly="True"
+                                     ScrollViewer.VerticalScrollBarVisibility="Visible" Background="WhiteSmoke"
+                                     DockPanel.Dock="Right" Margin="10" MinWidth="500" MinHeight="500" />
+    </DockPanel>
+</smartClient:UnityViewBase>
