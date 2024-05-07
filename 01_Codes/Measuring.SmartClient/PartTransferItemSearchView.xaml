@@ -1,0 +1,94 @@
+﻿<smartClient:InlineEditSearchViewBase x:Class="Measuring.SmartClient.PartTransferItemSearchView"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+     xmlns:Measuring.SmartClient.ViewModels="clr-namespace:Cet.SmartClient.Client;assembly=Cet.SmartClient.Client"
+     xmlns:localVM="clr-namespace:Measuring.SmartClient.ViewModels" 
+     xmlns:smartClient="clr-namespace:Cet.SmartClient.Client;assembly=Cet.SmartClient.Client"
+     xmlns:coreClient="clr-namespace:Cet.Hw.Core.SmartClient;assembly=Cet.Hw.Core.SmartClient"
+     xmlns:vab="clr-namespace:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF;assembly=Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF"
+     xmlns:Engine="clr-namespace:WPFLocalizeExtension.Engine;assembly=WPFLocalizeExtension"
+     Engine:LocalizeDictionary.DesignCulture="en-GB" mc:Ignorable="d" Name="ctlPartTransferItemSearchView"
+     xmlns:lex="http://schemas.root-project.org/xaml/presentation">
+    <ContentControl Style="{StaticResource SearchViewBaseStyle}">
+        <DockPanel>
+            <ContentControl DockPanel.Dock="Top" Style="{StaticResource SearchResultAreaStyle}">
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="0.5*" />
+                            </Grid.ColumnDefinitions>
+                            <coreClient:CetGridViewButtonGroup Grid.Column="0" CommandTarget="{Binding ElementName=ctlPartTransferItemSearchResult}" />
+                            <!--<telerik:DataFormCheckBoxField Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" LabelPosition="Beside"
+                                Label="{lex:LocText Measuring.SmartClient:PartTransferItemSearchView:UpdateNameSameBarcode}" DataMemberBinding="{Binding UpdateNameWithSameBarcode}" />-->
+                        </Grid>
+                    </StackPanel>
+                    <telerik:RadDataPager x:Name="ctlDataPager"
+                        DisplayMode="First, Last, Next, Previous, Text" IsTotalItemCountFixed="True" DockPanel.Dock="Bottom"
+                        PageSize="{Binding PageSize,Mode=TwoWay}" PageIndex="{Binding PageIndex,Mode=TwoWay}"
+                        ItemCount="{Binding ItemCount,Mode=TwoWay}"/>
+                    <telerik:RadGridView CopyingCellClipboardContent="OnCopyingCellClipboardContent" Name="ctlPartTransferItemSearchResult" RowEditEnded="OnRowEditEnded"
+                         ItemsSource="{Binding SearchResultCollectionView}" SelectionChanged="OnSelectionChanged"  SelectionChanging="OnSelectionChanging"
+                         DataContext="{Binding}" Deleting="OnDeletingAsync" CanUserDeleteRows="True" SelectionMode="Extended"
+                         RowValidating="OnRowValidating" CanUserInsertRows="True" AddingNewDataItem="OnAddingNewDataItem" Sorting="OnSortingAsync"
+                         ActionOnLostFocus="None" DockPanel.Dock="Top" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" >
+                        <telerik:RadGridView.Background>
+                            <ImageBrush  ImageSource="{Binding ImgBg}" AlignmentX="Left" AlignmentY="Bottom" Stretch="None" />
+                        </telerik:RadGridView.Background>
+                        <telerik:RadGridView.Columns>
+                            <telerik:GridViewSelectColumn />
+                            <telerik:GridViewDataColumn Name="SeqNo" SortMemberPath="SeqNo" DataMemberBinding="{Binding SeqNo, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                             MinWidth="20" Header="{lex:LocText Measuring.SmartClient:PartTransferItemSearchView:SeqNo}"
+                             IsReadOnly="True" HeaderTextAlignment="Center" TextAlignment="Center" />
+                            <!--<telerik:GridViewDataColumn Name="ProductBarcode" SortMemberPath="ProductBarcode" DataMemberBinding="{Binding ProductBarcode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="{Binding ItemStatusColor, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                             MinWidth="30" Header="{lex:LocText Measuring.SmartClient:PartTransferItemSearchView:ProductBarcode}" HeaderTextAlignment="Center" TextAlignment="Left" IsCustomSortingEnabled="True" />-->
+                            
+                            <telerik:GridViewDataColumn Name="ProductBarcode" Header="{lex:LocText Measuring.SmartClient:PartTransferItemSearchView:ProductBarcode}" 
+                                                        SortMemberPath="ProductBarcode" HeaderTextAlignment="Center" TextAlignment="Left" MinWidth="100"
+                                                        IsReadOnlyBinding="{Binding CanNotSelectItem}" Background="{Binding ItemStatusColor, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        IsSortable="True">
+                                <telerik:GridViewDataColumn.DataMemberBinding>
+                                    <Binding Path="ProductBarcode" UpdateSourceTrigger="PropertyChanged" />
+                                </telerik:GridViewDataColumn.DataMemberBinding>
+                                <telerik:GridViewDataColumn.CellEditTemplate>
+                                    <DataTemplate>
+                                        <telerik:RadWatermarkTextBox MinWidth="250" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0"
+                                                                   Text="{Binding ProductBarcode, UpdateSourceTrigger=LostFocus}" />
+                                    </DataTemplate>
+                                </telerik:GridViewDataColumn.CellEditTemplate>
+                            </telerik:GridViewDataColumn>
+
+                            <telerik:GridViewDataColumn Name="ProductName" SortMemberPath="ProductName"
+                             MinWidth="100" Header="{lex:LocText Measuring.SmartClient:PartTransferItemSearchView:ProductName}" HeaderTextAlignment="Center" TextAlignment="Left" IsCustomSortingEnabled="True" >
+                                <telerik:GridViewDataColumn.DataMemberBinding>
+                                    <Binding Path="ProductName" UpdateSourceTrigger="LostFocus" />
+                                </telerik:GridViewDataColumn.DataMemberBinding>
+                                <telerik:GridViewDataColumn.CellEditTemplate>
+                                    <DataTemplate>
+                                        <telerik:RadWatermarkTextBox MinWidth="100"  />
+                                    </DataTemplate>
+                                </telerik:GridViewDataColumn.CellEditTemplate>
+                            </telerik:GridViewDataColumn>
+                            
+                            <telerik:GridViewDataColumn Name="GrossWeight" IsSortable="False" DataMemberBinding="{Binding GrossWeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat='#,##0', ValidatesOnDataErrors=True}"
+                             MinWidth="50" Header="{lex:LocText Measuring.SmartClient:PartTransferItemSearchView:GrossWeight}" HeaderTextAlignment="Center" TextAlignment="Right" />
+                            <telerik:GridViewDataColumn Name="TareWeight" IsSortable="True" SortMemberPath="TareWeight" DataMemberBinding="{Binding TareWeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat='#,##0'}"
+                             MinWidth="50" Header="{lex:LocText Measuring.SmartClient:PartTransferItemSearchView:TareWeight}" HeaderTextAlignment="Center" TextAlignment="Right" />
+                            <telerik:GridViewDataColumn Name="NetWeight" IsSortable="True" SortMemberPath="NetWeight" DataMemberBinding="{Binding NetWeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat='#,##0'}"
+                             MinWidth="50" Header="{lex:LocText Measuring.SmartClient:PartTransferItemSearchView:NetWeight}" IsReadOnly="True" HeaderTextAlignment="Center" TextAlignment="Right" />
+                            
+                            <!--<telerik:GridViewDataColumn Name="ItemType" IsSortable="True" SortMemberPath="GatewayItemTypeValue" DataMemberBinding="{Binding ItemTypeDisplay, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             MinWidth="50" Header="{lex:LocText Measuring.SmartClient:PartTransferItemSearchView:ItemType}"  IsReadOnly="True" HeaderTextAlignment="Center" TextAlignment="Center" />-->
+                            <telerik:GridViewDataColumn Name="Remark" SortMemberPath="NoteData" DataMemberBinding="{Binding Remark, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                             MinWidth="100" Header="{lex:LocText Measuring.SmartClient:PartTransferItemSearchView:Remark}" IsReadOnly="True" HeaderTextAlignment="Center" TextAlignment="Left" IsCustomSortingEnabled="True" />
+
+                        </telerik:RadGridView.Columns>
+                    </telerik:RadGridView>
+                </DockPanel>
+            </ContentControl>
+        </DockPanel>
+    </ContentControl>
+</smartClient:InlineEditSearchViewBase>

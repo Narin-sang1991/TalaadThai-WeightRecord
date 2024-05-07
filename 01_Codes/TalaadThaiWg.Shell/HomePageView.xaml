@@ -1,0 +1,92 @@
+﻿<smartClient:UnityViewBase x:Class="TalaadThaiWg.Shell.HomePageView"
+     xmlns="http://schemas.microsoft.com/netfx/2009/xaml/presentation" 
+     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+     xmlns:local="clr-namespace:TalaadThaiWg.Shell"                     
+     xmlns:localVM="clr-namespace:TalaadThaiWg.Shell.ViewModels" 
+     xmlns:smartClient="clr-namespace:Cet.SmartClient.Client;assembly=Cet.SmartClient.Client"
+     xmlns:coreClient="clr-namespace:Cet.Hw.Core.SmartClient;assembly=Cet.Hw.Core.SmartClient"                     
+     xmlns:vab="clr-namespace:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF;assembly=Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF"
+     xmlns:Engine="clr-namespace:WPFLocalizeExtension.Engine;assembly=WPFLocalizeExtension"
+     Engine:LocalizeDictionary.DesignCulture="en-GB" mc:Ignorable="d" Name="ctlHomePageView"
+     xmlns:lex="http://schemas.root-project.org/xaml/presentation" Background="Transparent" >
+    <Grid>
+        <DockPanel LastChildFill="True">
+            <Grid DockPanel.Dock="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="0.5*" />
+                    <RowDefinition Height="1*" MinHeight="30" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <DockPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Margin="0 0 0 5">
+                    <Grid DockPanel.Dock="Top">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Width="80" Margin="0" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" >
+                            <Image Stretch="Fill" Name="imageCustomer" Source="/TalaadThaiWg.Shell;component/Images/LOGO.png" />
+                        </Viewbox>
+                        <telerik:Label Grid.Column="1" Content="{lex:LocText TalaadThaiWg.Shell:MainWindow:HomePage_Label}" HorizontalAlignment="Center" Foreground="Black" Style="{StaticResource LabelMenuHomePageStyle}" />
+                        <Viewbox Width="50" Margin="0" Grid.Column="2" HorizontalAlignment="Left">
+                            <Image Stretch="Fill" Name="imageIntegrate" Source="/TalaadThaiWg.Shell;component/Images/CET_LOGO.png" />
+                        </Viewbox>
+                    </Grid>
+                </DockPanel>
+                <DockPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
+                    <telerik:RadButton Name="searchReceiveBtn"
+                                   HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                   Style="{StaticResource SearchButtonStyle}"
+                                   Margin="-10,0,0,0" DockPanel.Dock="Right"
+                                   Command="{Binding ReceiveSearchCommand}" />
+                    <telerik:RadButton Name="editReceiveBtn"
+                                   HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                   Style="{StaticResource WgRecordsButtonHomeStyle}" 
+                                   Margin="20,0,0,0" DockPanel.Dock="Left"
+                                   Command="{Binding ReceiveEditorCommand}" />
+                </DockPanel>
+                <telerik:Label Content="{Binding ReceiveButtonLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" Style="{StaticResource LabelMenuHomePageStyle}" />
+
+                <DockPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center">
+                    <telerik:RadButton Name="searchProcessPlanBtn"
+                                   HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                   Style="{StaticResource SearchButtonStyle}"
+                                   Margin="-10,0,0,0" DockPanel.Dock="Right"
+                                   Command="{Binding ProcessPlanSearchCommand}" />
+                    <telerik:RadButton Name="processPlanImportedBtn"
+                                   HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                   Style="{StaticResource ImportButtonHomePageStyle}"
+                                   Margin="20,0,0,0" DockPanel.Dock="Left"
+                                   Command="{Binding MasterImportedCommand}" />
+                </DockPanel>
+                <telerik:Label Content="{Binding MasterImportedLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="2" Style="{StaticResource LabelMenuHomePageStyle}" />
+
+                <telerik:RadButton Name="wgRecordsGroupingReportBtn" Grid.Row="1" Grid.Column="3"
+                                   HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                   Style="{StaticResource ReportButtonHomePageStyle}" 
+                                   Command="{Binding WgRecordsGroupingReportCommand}" />
+                <telerik:Label Content="{Binding ReportButtonLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="3" Style="{StaticResource LabelMenuHomePageStyle}" />
+
+                <telerik:RadButton Name="userManageBtn" Grid.Row="3" Grid.Column="3"
+                                   HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                                   Style="{StaticResource FacesButtonHomeStyle}" 
+                                   Command="{Binding UserManageCommand}" />
+                <telerik:Label Content="{Binding UserManageLabel, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Grid.Row="4" Grid.Column="3" Style="{StaticResource LabelMenuHomePageStyle}" />
+
+            </Grid>
+        </DockPanel>
+    </Grid>
+</smartClient:UnityViewBase>

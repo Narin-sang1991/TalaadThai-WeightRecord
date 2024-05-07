@@ -1,0 +1,249 @@
+﻿<smartClient:EditorViewBase x:Class="Measuring.SmartClient.SplitUpEditorView"
+     xmlns="http://schemas.microsoft.com/netfx/2009/xaml/presentation" 
+     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+     xmlns:local="clr-namespace:Measuring.SmartClient"                           
+     xmlns:localVM="clr-namespace:Measuring.SmartClient.ViewModels" 
+     xmlns:smartClient="clr-namespace:Cet.SmartClient.Client;assembly=Cet.SmartClient.Client"
+     xmlns:coreClient="clr-namespace:Cet.Hw.Core.SmartClient;assembly=Cet.Hw.Core.SmartClient"
+     xmlns:vab="clr-namespace:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF;assembly=Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF"
+     xmlns:Engine="clr-namespace:WPFLocalizeExtension.Engine;assembly=WPFLocalizeExtension"
+     Engine:LocalizeDictionary.DesignCulture="en-GB" mc:Ignorable="d" x:Name="ctlSplitUpEditorView"
+     xmlns:lex="http://schemas.root-project.org/xaml/presentation" Background="Transparent" >
+    <ContentControl Style="{StaticResource EditorViewBaseStyle}">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
+            <DockPanel>
+                <DockPanel.Resources>
+                    <smartClient:CustomKeyboardCommandProvider x:Key="CustomCommandProvider"/>
+                    <DataTemplate x:Key="editorTemplate">
+                        <DockPanel  Margin="5" >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <telerik:Label HorizontalAlignment="Right" Margin="0" Grid.Row="0" Grid.Column="0"
+                                                   Style="{StaticResource SummaryLabelStyle}"
+                                                   Content="เลขที่ใบชั่งน้ำหนัก" 
+                                 />
+                                <telerik:RadWatermarkTextBox Grid.Row="0" Grid.Column="1" 
+                                    Text="{Binding ReferenceNo, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" Margin="5" 
+                                    FontWeight="ExtraBold" FontSize="16" IsEnabled="False"
+                                />
+
+                                <telerik:Label HorizontalAlignment="Right" Margin="20,0,0,0" Grid.Row="0" Grid.Column="2"
+                                               Style="{StaticResource SummaryLabelStyle}"
+                                                Content="หมายเลขทะเบียน" 
+                                 />
+                                <StackPanel Orientation="Horizontal"  Grid.Row="0" Grid.Column="3">
+                                    <telerik:RadWatermarkTextBox
+                                        Text="{Binding LicensePlateNo, UpdateSourceTrigger=PropertyChanged, Mode=OneWay, ValidatesOnDataErrors=True}" Margin="5,0,0,5" 
+                                        FontWeight="ExtraBold" FontSize="16" IsEnabled="False"
+                                        />
+                                    <telerik:RadButton Name="ctlWgLookup" HorizontalAlignment="Center" Margin="5,0"
+                                                       ToolTip="เลือกข้อมูลใบชั่ง" Content="เลือกข้อมูลใบชั่ง"
+                                                       IsEnabled="{Binding IsEditing, UpdateSourceTrigger=PropertyChanged}"
+                                                       Style="{StaticResource LookupButtonStyle}" Command="{Binding WeightDocLookupCommand}" />
+                                </StackPanel>
+
+                                <telerik:Label HorizontalAlignment="Right" Margin="20,0,0,0" Grid.Row="1" Grid.Column="0"
+                                               Style="{StaticResource SummaryLabelStyle}" Content="ผู้ขับขี่/โดยสาร(75กก. ต่อ คน)" 
+                                 />
+                                <telerik:RadWatermarkTextBox Grid.Row="1" Grid.Column="1" 
+                                    Text="{Binding DriverQty, UpdateSourceTrigger=LostFocus, Mode=TwoWay, ValidatesOnDataErrors=True, StringFormat='#,##0'}" Margin="5,0,0,5" 
+                                    FontWeight="ExtraBold" FontSize="16"
+                                />
+
+                                <telerik:Label HorizontalAlignment="Right" Margin="0" Grid.Row="1" Grid.Column="2"
+                                               Style="{StaticResource SummaryLabelStyle}" Content="ประเภทรถ" 
+                                 />
+                                <StackPanel Orientation="Horizontal"  Grid.Row="1" Grid.Column="3">
+                                    <telerik:RadComboBox  SelectedValuePath="Id" DisplayMemberPath="Name" Margin="5,0,0,0"
+                                            SelectedValue="{Binding TruckTypeId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            ItemsSource="{Binding TruckTypeItems, UpdateSourceTrigger=PropertyChanged}"
+                                            FontWeight="ExtraBold" FontSize="16"
+                                                          />
+                                    <!--<telerik:RadWatermarkTextBox
+                                        Text="{Binding TruckType, UpdateSourceTrigger=PropertyChanged, Mode=OneWay, ValidatesOnDataErrors=True}" Margin="5,0,0,5" 
+                                        FontWeight="ExtraBold" FontSize="16"
+                                    />
+                                    <telerik:RadButton Name="ctlTruckTypeLookup" HorizontalAlignment="Center" Margin="5,0"
+                                                       ToolTip="เลือกข้อมูลใบชั่ง" Content="เลือกข้อมูลใบชั่ง"
+                                                       IsEnabled="{Binding IsEditing, UpdateSourceTrigger=PropertyChanged}"
+                                                       Style="{StaticResource LookupButtonStyle}" Command="{Binding TruckTypeLookupCommand}" />-->
+                                </StackPanel>
+
+                                <telerik:Label HorizontalAlignment="Right" Margin="0" Grid.Row="2" Grid.Column="0"
+                                               Style="{StaticResource SummaryLabelStyle}" Content="น้ำหนักผู้ขับขี่/โดยสาร (กก.)" ToolTip="ประมาณการ" 
+                                 />
+                                <telerik:RadWatermarkTextBox Grid.Row="2" Grid.Column="1" IsReadOnly="True"
+                                    Text="{Binding DriverTare, UpdateSourceTrigger=PropertyChanged, Mode=OneWay, StringFormat=N2}" Margin="5" 
+                                    FontWeight="ExtraBold" FontSize="16"
+                                />
+
+                                <telerik:Label HorizontalAlignment="Right" Margin="0" Grid.Row="2" Grid.Column="2"
+                                               Style="{StaticResource SummaryLabelStyle}" Content="น้ำหนักรถ (กก.)" ToolTip="ประมาณการ" 
+                                 />
+                                <telerik:RadWatermarkTextBox Grid.Row="2" Grid.Column="3" IsReadOnly="True"
+                                    Text="{Binding TruckTare, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, StringFormat=N2}" Margin="5" 
+                                    FontWeight="ExtraBold" FontSize="16"
+                                />
+
+
+                            </Grid>
+                        </DockPanel>
+                    </DataTemplate>
+                </DockPanel.Resources>
+
+                <DockPanel DockPanel.Dock="Top">
+                    <DockPanel DockPanel.Dock="Left" VerticalAlignment="Top" HorizontalAlignment="Left" MinWidth="700" Margin="5" Background="WhiteSmoke">
+                        <Grid>
+                            <Grid.RowDefinitions >
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="3*" />
+                                <RowDefinition Height="2*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+
+                            <DockPanel  Name="dspRS232InputE"  Margin="10,0,0,0" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" Background="#25a0da" Width="180" DockPanel.Dock="Right" >
+                                <Border CornerRadius="2"
+                                                BorderBrush="White"
+                                                BorderThickness="2"
+                                                Padding="1"
+                                                Margin="3">
+                                    <telerik:Label DockPanel.Dock="Right" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalAlignment="Stretch" VerticalContentAlignment="Center"
+                                                   FontSize="22" FontWeight="ExtraBold" Style="{StaticResource PssLabelStyle}"
+                                                   Content="คัดแยก" />
+                                </Border>
+                            </DockPanel>
+
+                            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" Margin="10,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
+                                <telerik:Label Margin="0,0,5,5" Padding="1" Style="{StaticResource TitleLabelStyle}"
+                                                   ToolTip="เลขที่เอกสารคัดแยก"
+                                                   Content="ST63020145" />
+                                <telerik:Label Margin="0,5,5,0" Padding="1" Style="{StaticResource TitleLabelStyle}"
+                                                   ToolTip="สถานะเอกสาร"
+                                                   Content="เตรียมข้อมูล" />
+                            </StackPanel>
+
+                            <DockPanel Name="dspzCurentState" Grid.Row="1" Grid.Column="0"  HorizontalAlignment="Left" Margin="0" >
+                                <coreClient:CetDataFormButtonGroup DockPanel.Dock="Bottom" HorizontalAlignment="Center" CommandTarget="{Binding ElementName=ctlSplitUpEditor}" 
+                                                       StackLayOutButton="Horizontal" ShowNavigationButtons="Collapsed" />
+                            </DockPanel>
+                            <DockPanel  Name="dspGross"  Margin="0 10" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Background="#25a0da" Width="180" DockPanel.Dock="Right" >
+                                <Border CornerRadius="2"
+                                                BorderBrush="White"
+                                                BorderThickness="2"
+                                                Padding="1"
+                                                Margin="3">
+                                    <telerik:Label DockPanel.Dock="Right" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalAlignment="Stretch" VerticalContentAlignment="Center"
+                                                   FontSize="16" FontWeight="ExtraBold" Style="{StaticResource PssLabelStyle}"
+                                                   ToolTip="น้ำหนักรวม"
+                                                   Content="{Binding GrossWeightDisplay, UpdateSourceTrigger=PropertyChanged}" />
+                                </Border>
+                            </DockPanel>
+
+
+                            <ContentControl Style="{StaticResource MasterAreaStyle}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="5,0,10,0">
+                                <smartClient:CetDataForm x:Name="ctlSplitUpEditor" AutoGenerateFields="False"
+                                 MinWidth="400" CommitButtonStyle="{StaticResource OKButtonStyle}" CancelButtonStyle="{StaticResource CancelButtonStyle}"
+                                 CurrentItem="{Binding}" EditEnding="OnEditEnding" DeletingItem="OnDeletingItem" CurrentItemChanged="OnCurrentItemChanged" 
+                                 ReadOnlyTemplate="{DynamicResource editorTemplate}"
+                                 EditTemplate="{DynamicResource editorTemplate}">
+                                    <telerik:RadDataForm.BindingGroup>
+                                        <BindingGroup Name="ValidationGroup" NotifyOnValidationError="True" />
+                                    </telerik:RadDataForm.BindingGroup>
+                                </smartClient:CetDataForm>
+                            </ContentControl>
+
+                            <telerik:GroupBox Name="dspzBrief" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,0,5,20" Header="น้ำหนักรวม(กิโลกรัม)"
+                                          HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" 
+                                          Foreground="Maroon" BorderBrush="Maroon" FontSize="14" FontWeight="Bold">
+                                <Grid Margin="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*" />
+                                        <RowDefinition Height="1*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <telerik:Label Name="dspTotlaGross" Grid.Row="0" Grid.Column="0" Content="น้ำหนักตั้งต้น" Margin="0,5" Style="{StaticResource SummaryLabelStyle}"/>
+                                    <telerik:Label Name="ctlTotalGross" Grid.Row="0" Grid.Column="1" Margin="0,5" Style="{StaticResource PssLabelStyle}" Background="#25a0da"
+                                                                                Content="{Binding GrossWeight, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="N2" />
+
+                                    <telerik:Label Name="dspTotlaTare" Grid.Row="0" Grid.Column="2" Content="น้ำหนักหัก/ภาชนะ" Margin="0,5" Style="{StaticResource SummaryLabelStyle}"/>
+                                    <telerik:Label Name="ctlTotalTare" Grid.Row="0" Grid.Column="3" Margin="0,5" Style="{StaticResource PssLabelStyle}" Background="#25a0da"
+                                                                                Content="{Binding TotalTare, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="N2" />
+
+                                    <telerik:Label Name="dspTotalNet" Grid.Row="1" Grid.Column="2" Content="น้ำหนักสุทธิ" Margin="0,5" Style="{StaticResource SummaryLabelStyle}"/>
+                                    <telerik:Label Name="ctlTotalNet" Grid.Row="1" Grid.Column="3" Margin="0,5" Style="{StaticResource PssLabelStyle}" Background="#25a0da"
+                                                                                Content="{Binding NetWeight, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="N2" />
+                                 </Grid>
+                            </telerik:GroupBox>
+
+
+
+                            <StackPanel Margin="0,20" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <telerik:RadButton Name="ctlCommit" HorizontalAlignment="Center" Margin="10,0"
+                                               Style="{StaticResource CommitFlowButtonStyle}"  />
+                                <telerik:RadButton Name="ctlRollback" HorizontalAlignment="Center" Margin="10,0"
+                                               Style="{StaticResource RollbackFlowButtonStyle}"  />
+                            </StackPanel>
+                        </Grid>
+                    </DockPanel>
+
+                    <!--<DockPanel DockPanel.Dock="Left" HorizontalAlignment="Left" >
+                        <StackPanel Margin="0,5" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" DockPanel.Dock="Top"
+                                Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center"  >
+                            <telerik:RadButton Margin="0" Name="ctlSync2External" Style="{StaticResource Sync2ExternalButtonStyle}"
+                                           ToolTip="ส่งข้อมูลไปยังระบบอื่น"
+                                           IsEnabled="{Binding AllowCommit, UpdateSourceTrigger=PropertyChanged}" Command="{Binding Sync2ExternalCommand}"/>
+                            <StackPanel Orientation="Vertical" Margin="3,0">
+                                <telerik:RadButton  Name="ctlReferenceSelector" Style="{StaticResource ReferenceSelectorButtonStyle}"
+                                           ToolTip="เลือกรถเพื่อชั่งออก"         
+                                           IsEnabled="{Binding IsEditing, UpdateSourceTrigger=PropertyChanged}" Command="{Binding ReferenceSelectorCommand}"/>
+                                <telerik:RadButton Name="ctlNewWeigh" Style="{StaticResource NewWeighButtonStyle}"
+                                           ToolTip="สร้างใบชั่งน้ำหนักใหม่"          
+                                           IsEnabled="{Binding IsNotEditing, UpdateSourceTrigger=PropertyChanged}" Command="{Binding NewWeighCommand}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <telerik:RadButton DockPanel.Dock="Bottom" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Style="{StaticResource RadButtonStyle}"
+                                       Padding="5" FontSize="14" FontWeight="Bold" Content="พิมพ์เอกสาร"
+                                       />
+                    </DockPanel>-->
+                    <ContentControl DockPanel.Dock="Right" Style="{StaticResource SearchResultAreaStyle}" IsEnabled="{Binding AllowCommit}"
+                        MinWidth="500" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  Margin="5,10,0,0">
+                        <telerik:RadTabControl ItemsSource="{Binding ChildNodes}">
+                            <telerik:RadTabControl.Resources>
+                                <DataTemplate DataType="{x:Type localVM:PartTransferItemSearchVM}">
+                                    <DockPanel>
+                                        <local:PartTransferItemSearchView DataContext="{Binding}" />
+                                    </DockPanel>
+                                </DataTemplate>
+                            </telerik:RadTabControl.Resources>
+                        </telerik:RadTabControl>
+                    </ContentControl>
+
+                </DockPanel>
+            </DockPanel>
+        </ScrollViewer>
+    </ContentControl>
+</smartClient:EditorViewBase>

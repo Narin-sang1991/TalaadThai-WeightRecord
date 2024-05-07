@@ -1,0 +1,91 @@
+﻿<smartClient:DocSearchViewBase x:Class="Measuring.SmartClient.ProcessPlanSearchView"
+     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+     xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+     xmlns:Measuring.SmartClient.ViewModels="clr-namespace:Cet.SmartClient.Client;assembly=Cet.SmartClient.Client"
+     xmlns:localVM="clr-namespace:Measuring.SmartClient.ViewModels" 
+     xmlns:smartClient="clr-namespace:Cet.SmartClient.Client;assembly=Cet.SmartClient.Client"
+     xmlns:coreClient="clr-namespace:Cet.Hw.Core.SmartClient;assembly=Cet.Hw.Core.SmartClient"
+     xmlns:vab="clr-namespace:Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF;assembly=Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF"
+     xmlns:Engine="clr-namespace:WPFLocalizeExtension.Engine;assembly=WPFLocalizeExtension"
+     Engine:LocalizeDictionary.DesignCulture="en-GB" mc:Ignorable="d" Name="ctlProcessPlanSearchView"
+     xmlns:lex="http://schemas.root-project.org/xaml/presentation">
+    <ContentControl Style="{StaticResource SearchViewBaseStyle}">
+        <DockPanel>
+            <ContentControl DockPanel.Dock="Top" Style="{StaticResource SearchResultAreaStyle}">
+                <DockPanel>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="20" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="10*" />
+                            </Grid.ColumnDefinitions>
+                            <coreClient:CetGridViewButtonGroup IsEnabled="{Binding IsEditing}" Grid.Column="0" ShowAddButton="Collapsed" CommandTarget="{Binding ElementName=ctlProcessPlanSearchResult}" />
+                            <telerik:RadButton Name="ctlSelectFile" Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource ImportFileButtonStyle}" IsEnabled="{Binding IsEditing}"
+                                ToolTip="{lex:LocText Measuring.SmartClient:ProcessPlanSearchView:ImportFile}" Command="{Binding SelectFileCommand}" />
+                            <telerik:RadButton Name="ctlStartAutoImportCommand" Grid.Column="3" VerticalAlignment="Center" Style="{StaticResource AutoImportFileButtonStyle}" IsEnabled="{Binding IsNotRunningAutoImport}"
+                                ToolTip="{lex:LocText Measuring.SmartClient:ProcessPlanSearchView:StartAutoImport}" Command="{Binding TrigAutoImportCommand}" />
+                            <telerik:RadButton Name="ctlStopAutoImportCommand" Grid.Column="4" VerticalAlignment="Center" Style="{StaticResource StopImportFileButtonStyle}" IsEnabled="{Binding IsRunningAutoImport}"
+                                ToolTip="{lex:LocText Measuring.SmartClient:ProcessPlanSearchView:StopAutoImport}" Command="{Binding TrigAutoImportCommand}" />
+                            <telerik:DataFormDataField Grid.Column="5" VerticalAlignment="Center" Margin="50,0" MinWidth="400" Label="{lex:LocText Measuring.SmartClient:ProcessPlanSearchView:CoilNoFilter}" IsEnabled="{Binding IsEditing}"
+                                                        DataMemberBinding="{Binding CoilNoFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                        </Grid>
+                    </StackPanel>
+                    <telerik:RadDataPager x:Name="ctlDataPager" DisplayMode="First, Last, Next, Previous, Text"
+                        ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                        Source="{Binding ElementName=ctlProcessPlanSearchResult, Path=Items}"
+                        DockPanel.Dock="Bottom" PageSize="{Binding PageSize,Mode=TwoWay}" />
+                    <Grid DockPanel.Dock="Top" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Margin="5" VerticalAlignment="Top">
+                            <telerik:RadButton Name="btnMoveUp" Style="{StaticResource MoveUpButtonStyle}" IsEnabled="{Binding CanMoveUp}" Command="{Binding MoveUpCommand}" />
+                            <telerik:RadButton Name="btnMoveDown" Style="{StaticResource MoveDownButtonStyle}" IsEnabled="{Binding CanMoveDown}" Command="{Binding MoveDownCommand}" />
+                        </StackPanel>
+                        <DockPanel Grid.Column="1">
+                            <telerik:RadGridView CopyingCellClipboardContent="OnCopyingCellClipboardContent" Name="ctlProcessPlanSearchResult"
+                         ItemsSource="{Binding SearchResultCollectionView}" EditTriggers="CellClick" CanUserDeleteRows="True" Deleting="OnDeleting"
+                         CanUserInsertRows="False" IsReadOnlyBinding="{Binding IsNotEditing}" AddingNewDataItem="OnAddingNewDataItem"
+                         ActionOnLostFocus="None" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" >
+                                <telerik:RadGridView.Columns>
+                                    <telerik:GridViewSelectColumn />
+                                    <telerik:GridViewDataColumn Name="SeqNo" SortMemberPath="SeqNo" DataMemberBinding="{Binding SeqNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             MinWidth="20" Header="{lex:LocText Measuring.SmartClient:ProcessPlanSearchView:SeqNo}"
+                             HeaderTextAlignment="Center" TextAlignment="Center" />
+                                    <telerik:GridViewDataColumn Name="ProcessPlanDate" SortMemberPath="ProcessPlanDate" DataMemberBinding="{Binding ProcessPlanDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:dd MMM yyyy}'}"
+                             MinWidth="50" Header="{lex:LocText Measuring.SmartClient:ProcessPlanSearchView:ProcessPlanDate}" HeaderTextAlignment="Center" TextAlignment="Center" IsCustomSortingEnabled="True" />
+                                    <telerik:GridViewDataColumn Name="PosNo" IsSortable="True" SortMemberPath="PosNo" DataMemberBinding="{Binding PosNo, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                             MinWidth="50" Header="{lex:LocText Measuring.SmartClient:ProcessPlanSearchView:PosNo}"  IsReadOnly="True" HeaderTextAlignment="Center" TextAlignment="Left" />
+                                    <telerik:GridViewDataColumn Name="ProcessMachineCode" IsSortable="True" SortMemberPath="ProcessMachineCode" DataMemberBinding="{Binding ProcessMachineCode, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                             MinWidth="50" Header="{lex:LocText Measuring.SmartClient:ProcessPlanSearchView:ProcessMachineCode}"  IsReadOnly="True" HeaderTextAlignment="Center" TextAlignment="Center" />
+                                    <telerik:GridViewDataColumn Name="CoilNo" IsSortable="True" SortMemberPath="CoilNo" DataMemberBinding="{Binding CoilNo, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                             MinWidth="50" Header="{lex:LocText Measuring.SmartClient:ProcessPlanSearchView:CoilNo}"  IsReadOnly="True" HeaderTextAlignment="Center" TextAlignment="Justify" />
+
+                                    <telerik:GridViewDataColumn Name="CoilWeight" IsSortable="False" DataMemberBinding="{Binding CoilWeight, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, StringFormat='#,##0'}"
+                             MinWidth="50" Header="{lex:LocText Measuring.SmartClient:ProcessPlanSearchView:CoilWeight}" HeaderTextAlignment="Center" TextAlignment="Right" />
+                                    <telerik:GridViewDataColumn Name="Remark" IsSortable="True" SortMemberPath="Remark" DataMemberBinding="{Binding Remark, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                             MinWidth="50" Header="{lex:LocText Measuring.SmartClient:ProcessPlanSearchView:Remark}" IsReadOnly="True" HeaderTextAlignment="Center" TextAlignment="Justify" />
+                                    <telerik:GridViewDataColumn Name="Used" IsSortable="False" DataMemberBinding="{Binding Used, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                             MinWidth="50" Header="{lex:LocText Measuring.SmartClient:ProcessPlanSearchView:Used}" HeaderTextAlignment="Center" TextAlignment="Center" >
+                                        <telerik:GridViewDataColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding UsedStatus, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center"
+                                                   Background="{Binding UsedStatusColor, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="0" Padding="0" />
+                                            </DataTemplate>
+                                        </telerik:GridViewDataColumn.CellTemplate>
+                                    </telerik:GridViewDataColumn>
+                                </telerik:RadGridView.Columns>
+                            </telerik:RadGridView>
+                        </DockPanel>
+                    </Grid>
+                </DockPanel>
+            </ContentControl>
+        </DockPanel>
+    </ContentControl>
+</smartClient:DocSearchViewBase>

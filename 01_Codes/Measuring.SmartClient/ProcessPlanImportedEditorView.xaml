@@ -1,0 +1,103 @@
+﻿<smartClient:EditorViewBase xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+     xmlns:smartClient="clr-namespace:Cet.SmartClient.Client;assembly=Cet.SmartClient.Client"
+     xmlns:local="clr-namespace:Measuring.SmartClient" 
+     xmlns:localVM="clr-namespace:Measuring.SmartClient.ViewModels"
+     xmlns:coreControls="clr-namespace:Cet.Hw.Core.SmartClient;assembly=Cet.Hw.Core.SmartClient"
+     x:Class="Measuring.SmartClient.ProcessPlanImportedEditorView" mc:Ignorable="d" d:DesignHeight="400" d:DesignWidth="1600" 
+     x:Name="ProcessPlanImportedEditor" xmlns:lex="http://schemas.root-project.org/xaml/presentation">
+    <ContentControl Style="{StaticResource EditorViewBaseStyle}">
+        <ContentControl.Resources>
+            <CollectionViewSource x:Key="ChildNodesSource" Source="{Binding ChildNodes}"/>
+        </ContentControl.Resources>
+        <DockPanel>
+            <DockPanel.Resources>
+                <smartClient:CustomKeyboardCommandProvider x:Key="CustomCommandProvider"/>
+            </DockPanel.Resources>
+            <DockPanel DockPanel.Dock="Top">
+                <telerik:RadButton ToolTip="{lex:LocText Cet.SmartClient.Client:Messages:RELOAD_BUTTON}" Style="{StaticResource ReLoadButtonStyle}" Margin="5,0,0,0" Padding="2" 
+                                Name="ReloadBtn" Command="{Binding ReloadAsyncCommand}" HorizontalAlignment="Left" VerticalAlignment="Center" IsEnabled="{Binding IsNotEditing}"/>
+                <coreControls:CetDataFormButtonGroup HorizontalAlignment="Left" CommandTarget="{Binding ElementName=ctlProcessPlanEditor}" Margin="10,3"
+                                                       StackLayOutButton="Horizontal" ShowAddButton="Collapsed" ShowDeleteButton="Collapsed" ShowNavigationButtons="Collapsed" />
+                
+                <telerik:DataFormDateField VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="300"
+                        Label="{lex:LocText Measuring.SmartClient:ProcessPlanImportedEditorView:ImportedDate}" IsReadOnly="True"
+                        DataMemberBinding="{Binding ImportedDate, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, StringFormat=d}" />
+                <DockPanel Margin="10,3" HorizontalAlignment="Right" Background="#25a0da" MinWidth="180"  >
+                    <Border CornerRadius="2"
+                            BorderBrush="White"
+                            BorderThickness="2"
+                            Margin="3" 
+                            Padding="2">
+                        <telerik:Label HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalAlignment="Stretch" VerticalContentAlignment="Center"
+                                                   Style="{StaticResource PssLabelStyle}" ToolTip="{lex:LocText Measuring.SmartClient:ProcessPlanImportedEditorView:ImportedNo}"
+                                                   Content="{Binding ImportedNo, UpdateSourceTrigger=PropertyChanged}" />
+                    </Border>
+                </DockPanel>
+            </DockPanel>
+            <ContentControl Style="{StaticResource MasterAreaStyle}" DockPanel.Dock="Top" Margin="5,0,10,0">
+                <smartClient:CetDataForm x:Name="ctlProcessPlanEditor" DataContext="{Binding}" CurrentItem="{Binding}"
+                                 EditEnding="OnEditEnding" DeletingItem="OnDeletingItem" CommandProvider="{StaticResource CustomCommandProvider}">
+                    <telerik:RadDataForm.BindingGroup>
+                        <BindingGroup NotifyOnValidationError="True" Name="ValidationGroup" />
+                    </telerik:RadDataForm.BindingGroup>
+                    <telerik:RadDataForm.ReadOnlyTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="5">
+
+                                <telerik:Label Content="{lex:LocText Measuring.SmartClient:ProcessPlanImportedEditorView:Remark}" VerticalAlignment="Top" VerticalContentAlignment="Top" />
+                                <TextBox Text="{Binding Remark, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"
+                                             AcceptsReturn="True" MinHeight="80" MaxHeight="240" Width="500" VerticalContentAlignment="Top" />
+
+                                <telerik:DataFormDataField VerticalAlignment="Top" HorizontalAlignment="Center"
+                                      Label="{lex:LocText Measuring.SmartClient:ProcessPlanImportedEditorView:TotalCoilQty}"
+                                      DataMemberBinding="{Binding TotalCoilQty, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" IsReadOnly="True" />
+
+                                <telerik:DataFormDataField VerticalAlignment="Top" HorizontalAlignment="Right"
+                                      Label="{lex:LocText Measuring.SmartClient:ProcessPlanImportedEditorView:TotalCoilWeight}"
+                                      DataMemberBinding="{Binding TotalCoilWeight, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" IsReadOnly="True" />
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </telerik:RadDataForm.ReadOnlyTemplate>
+
+                    <telerik:RadDataForm.EditTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="5">
+
+                                <telerik:Label Content="{lex:LocText Measuring.SmartClient:ProcessPlanImportedEditorView:Remark}" VerticalAlignment="Top" VerticalContentAlignment="Top" />
+                                <TextBox Text="{Binding Remark, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                             AcceptsReturn="True" MinHeight="80" MaxHeight="240" Width="500" VerticalContentAlignment="Top"
+                                             />
+
+                                <telerik:DataFormDataField VerticalAlignment="Top" HorizontalAlignment="Center"
+                                      Label="{lex:LocText Measuring.SmartClient:ProcessPlanImportedEditorView:TotalCoilQty}" IsEnabled="False"
+                                      DataMemberBinding="{Binding TotalCoilQty, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" />
+
+                                <telerik:DataFormDataField VerticalAlignment="Top" HorizontalAlignment="Right"
+                                      Label="{lex:LocText Measuring.SmartClient:ProcessPlanImportedEditorView:TotalCoilWeight}" IsEnabled="False"
+                                      DataMemberBinding="{Binding TotalCoilWeight, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, StringFormat=N2}" />
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </telerik:RadDataForm.EditTemplate>
+                </smartClient:CetDataForm >
+            </ContentControl>
+
+            <ContentControl DockPanel.Dock="Bottom" Style="{StaticResource SearchResultAreaStyle}"
+                    VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,10,0,0" >
+                <telerik:RadTabControl ItemsSource="{Binding ChildNodes}">
+                    <telerik:RadTabControl.Resources>
+                        <DataTemplate DataType="{x:Type localVM:ProcessPlanSearchVM}">
+                            <DockPanel>
+                                <local:ProcessPlanSearchView DataContext="{Binding}" />
+                            </DockPanel>
+                        </DataTemplate>
+                    </telerik:RadTabControl.Resources>
+                </telerik:RadTabControl>
+            </ContentControl>
+
+        </DockPanel>
+    </ContentControl>
+</smartClient:EditorViewBase>

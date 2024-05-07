@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<unity>
+  <sectionExtension type="Unity.FactoryConfig.FactoryConfigExtension, Unity.FactoryConfig"/>
+  <alias alias="singleton" type="Microsoft.Practices.Unity.ContainerControlledLifetimeManager, Microsoft.Practices.Unity"/>
+  <assembly name="Cet.Core"/>
+  <namespace name="Cet.Core"/>
+  <assembly name="Cet.SmartClient.Client"/>
+  <namespace name="Cet.SmartClient.Client"/>
+  <assembly name="System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+  <namespace name="System.ServiceModel"/>
+  <assembly name="PresentationCore, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
+  <namespace name="System.Windows.Input"/>
+  <namespace name="System.Collections.ObjectModel"/>
+  <namespace name="System"/>
+  <containers>
+    <container>
+      <types>
+        <type type="MessageHeaderInserterBase" mapTo="CultureMessageHeaderInserter" name="CultureMessageHeaderInserter"/>
+        <type type="ChannelFactory`1[IUserService]">
+          <constructor>
+            <param name="endpointConfigurationName">
+              <value value="UserService"/>
+            </param>
+          </constructor>
+          <lifetime type="singleton"/>
+        </type>
+        <type type="IUserService">
+          <factory type="ChannelInjectionFactory`1[IUserService]" method="CreateChannel"/>
+        </type>
+        <type type="ChannelFactory`1[IMenuService]">
+          <constructor>
+            <param name="endpointConfigurationName">
+              <value value="MenuService"/>
+            </param>
+          </constructor>
+          <lifetime type="singleton"/>
+        </type>
+        <type type="IMenuService">
+          <factory type="ChannelInjectionFactory`1[IMenuService]" method="CreateChannel"/>
+        </type>
+        <type type="ChannelFactory`1[IFormAuthenticationService]">
+          <constructor>
+            <param name="endpointConfigurationName">
+              <value value="FormAuthenticationService"/>
+            </param>
+          </constructor>
+          <lifetime type="singleton"/>
+        </type>
+        <type type="IFormAuthenticationService">
+          <factory type="ChannelInjectionFactory`1[IFormAuthenticationService]" method="CreateChannel"/>
+        </type>
+        <type type="MenuCommand" mapTo="AboutCommand" name="About"/>
+        <type type="MenuCommand" mapTo="ChangeLanguageCommand" name="LanguageENCommand">
+          <constructor>
+            <param name="container">
+              <dependency type="Microsoft.Practices.Unity.IUnityContainer, Microsoft.Practices.Unity"/>
+            </param>
+            <param name="languageName" value="en-US"/>
+          </constructor>
+        </type>
+        <type type="MenuCommand" mapTo="ChangeLanguageCommand" name="LanguageTHCommand">
+          <constructor>
+            <param name="container">
+              <dependency type="Microsoft.Practices.Unity.IUnityContainer, Microsoft.Practices.Unity"/>
+            </param>
+            <param name="languageName" value="th-TH"/>
+          </constructor>
+        </type>
+        <type type="MenuCommand" mapTo="UserManagerCommand" name="UserManager"/>
+        <type type="ChannelFactory`1[IMeasuringService]">
+          <constructor>
+            <param name="endpointConfigurationName">
+              <value value="MeasuringService"/>
+            </param>
+          </constructor>
+          <lifetime type="singleton"/>
+        </type>
+        <type type="IMeasuringService">
+          <factory type="ChannelInjectionFactory`1[IMeasuringService]" method="CreateChannel"/>
+        </type>
+        <type type="ChannelFactory`1[IMeasuringReportService]">
+          <constructor>
+            <param name="endpointConfigurationName">
+              <value value="MeasuringReportService"/>
+            </param>
+          </constructor>
+          <lifetime type="singleton"/>
+        </type>
+        <type type="IMeasuringReportService">
+          <factory type="ChannelInjectionFactory`1[IMeasuringReportService]" method="CreateChannel"/>
+        </type>
+        <type type="ChannelFactory`1[IProcessPlanService]">
+          <constructor>
+            <param name="endpointConfigurationName">
+              <value value="ProcessPlanService"/>
+            </param>
+          </constructor>
+          <lifetime type="singleton"/>
+        </type>
+        <type type="IProcessPlanService">
+          <factory type="ChannelInjectionFactory`1[IProcessPlanService]" method="CreateChannel"/>
+        </type>
+        <type type="MenuCommand" mapTo="PartTransferReceiveSearchCommand" name="ReceiveSearchCommand"/>
+        <type type="MenuCommand" mapTo="PartTransfer_ReceiveEditorCommand" name="PartTransferReceiveCommand"/>
+        <type type="MenuCommand" mapTo="WgRecordsGroupingReportCommand" name="WgRecordsGroupingReportCommand"/>
+        <type type="MenuCommand" mapTo="ProcessPlanSearchCommand" name="ProcessPlanSearchCommand"/>
+      </types>
+      <instance name="BGImageUrl" value="BGImageUrl"/>
+      <instance name="DefaultLogoURL" value="/Images/LogoCetSoft/CET_LOGO.jpg"/>
+      <instance name="DefaultUnitId" value="27F48DB5-7C17-4CDA-9D90-25E800AC3A7F" type="System.Guid"/>
+      <instance name="ComportNameInput" value="COM3" type="System.String"/>
+      <instance name="ComportNameOutput" value="COM7" type="System.String"/>
+      <instance name="ComportDataStartText" value="ST,GROSS" type="System.String"/>
+      <instance name="ComportDataEndText" value="kg" type="System.String"/>
+      <instance name="ComportDataStartPoint" value="10" type="System.Byte"/>
+      <instance name="ComportDataLength" value="8" type="System.Byte"/>
+      <instance name="PartRecordsPrintFormPath" value="\Reports\PartRecordsPrintForm.rdlc" type="string"/>
+      <instance name="WgRecordsGroupingReportPath" value="\Reports\WgRecordsGroupingReport.rdlc" type="string"/>
+      <instance name="SeqArrPoint" value="POS_SEQ" type="System.String"/>
+      <instance name="PosNoArrPoint" value="POSNO" type="System.String"/>
+      <instance name="PlanDateArrPoint" value="PLANEDDATE" type="System.String"/>
+      <instance name="MachineCodeArrPoint" value="MACHINE" type="System.String"/>
+      <instance name="CoilPackingCodeArrPoint" value="COILNO" type="System.String"/>
+      <instance name="CoilWeightArrPoint" value="COILWEIGHT" type="System.String"/>
+      <instance name="WeightPrecisionLimit" value="10" type="System.Decimal"/>
+      <instance name="ImportFilePath" value="D:\TheScale\INPUT" type="System.String"/>
+      <instance name="ExtensionImportFile" value="*.csv" type="System.String"/>
+      <instance name="IntervalAutoImportSec" value="30" type="System.Int32"/>
+      <instance name="ImportedFilePath" value="D:\TheScale\INPUT\BAK" type="System.String"/>
+      <instance name="ExtensionFileImported" value=".imported" type="System.String"/>
+      <instance name="ExportFilePath" value="D:\TheScale\OUTPUT" type="System.String"/>
+      <instance name="ExportFileNameFormat" value="scaleresult_{0}.{1}" type="System.String"/>
+      <instance name="FileDateTimeFormat" value="yyMMdd_HHmmss" type="System.String"/>
+      <instance name="AutoSaveLimitCounting" value="300" type="System.Int32"/>
+      <instance name="MinWgAllowAutoSave" value="200" type="System.Int32"/>
+      <type type="IDocumentOpenInfo" mapTo="DocumentOpenerInfo" name="DocumentOpenerInfo"/>
+    </container>
+  </containers>
+  <assembly name="Cet.Hw.Core.SmartClient"/>
+  <namespace name="Cet.Hw.Core.SmartClient"/>
+  <namespace name="Cet.Hw.Core.SmartClient.Commands"/>
+  <assembly name="Cet.Hw.Core.SmartClient.ViewModels"/>
+  <namespace name="Cet.Hw.Core.SmartClient.ViewModels"/>
+  <assembly name="Cet.Hw.Core.AppServiceContract"/>
+  <namespace name="Cet.Hw.Core.AppServiceContract"/>
+  <assembly name="Measurement.AppServiceContract"/>
+  <namespace name="Measurement.AppServiceContract"/>
+  <assembly name="Measuring.SmartClient"/>
+  <namespace name="Measuring.SmartClient"/>
+  <namespace name="Measuring.SmartClient.ViewModels"/>
+  <namespace name="Measuring.SmartClient.Commands"/>
+</unity>

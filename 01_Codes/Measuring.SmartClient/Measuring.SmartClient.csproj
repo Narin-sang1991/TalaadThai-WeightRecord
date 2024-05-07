@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8A0D9159-AA26-4D51-AFDD-B6253B7AC562}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Measuring.SmartClient</RootNamespace>
+    <AssemblyName>Measuring.SmartClient</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="LumenWorks.Framework.IO, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5ad3ea2f85776344, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\LumenWorksCsvReader.4.0.0\net45\LumenWorks.Framework.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.1.0.0, Culture=neutral, PublicKeyToken=e44a2bc38ed2c13c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\EntLib5\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
+      <HintPath>..\References\EntLib5\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=4.1.0.0, Culture=neutral, PublicKeyToken=e44a2bc38ed2c13c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\EntLib5\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Validation">
+      <HintPath>..\References\EntLib5\Microsoft.Practices.EnterpriseLibrary.Validation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF">
+      <HintPath>..\References\EntLib5\Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism">
+      <HintPath>..\References\PrismWeb\Microsoft.Practices.Prism.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Prism.UnityExtensions">
+      <HintPath>..\References\PrismWeb\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\EntLib5\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\EntLib5\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=2.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\EntLib5\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\ReportViewer14\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\ReportViewer14\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\ReportViewer14\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Windows.Controls">
+      <HintPath>..\References\Telerik\Binaries\WPF45\Telerik.Windows.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Data">
+      <HintPath>..\References\Telerik\Binaries\WPF45\Telerik.Windows.Controls.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.DataVisualization">
+      <HintPath>..\References\Telerik\Binaries\WPF45\Telerik.Windows.Controls.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Docking">
+      <HintPath>..\References\Telerik\Binaries\WPF45\Telerik.Windows.Controls.Docking.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.GridView">
+      <HintPath>..\References\Telerik\Binaries\WPF45\Telerik.Windows.Controls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Input">
+      <HintPath>..\References\Telerik\Binaries\WPF45\Telerik.Windows.Controls.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Controls.Navigation">
+      <HintPath>..\References\Telerik\Binaries\WPF45\Telerik.Windows.Controls.Navigation.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Windows.Data">
+      <HintPath>..\References\Telerik\Binaries\WPF45\Telerik.Windows.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.FactoryConfig">
+      <HintPath>..\References\EntLib5\Unity.FactoryConfig.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WPFLocalizeExtension">
+      <HintPath>..\References\WPFLocalizeExtension\WPFLocalizeExtension.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\ProcessPlanImportedCommand.cs" />
+    <Compile Include="Commands\ProcessPlanSearchCommand.cs" />
+    <Compile Include="Commands\WgRecordsGroupingReportCommand.cs" />
+    <Compile Include="Commands\PartTransferReceiveSearchCommand.cs" />
+    <Compile Include="Commands\PartTransfer_ReceiveEditorCommand.cs" />
+    <Compile Include="Events\SplitUpOpen.cs" />
+    <Compile Include="Events\PartTransferReceiveOpen.cs" />
+    <Compile Include="Events\SplitUpOpenListener.cs" />
+    <Compile Include="Events\ProcessPlanImportedOpenListener.cs" />
+    <Compile Include="Events\PartTransferReceiveOpenListener.cs" />
+    <Compile Include="Events\ProcessPlanImportedOpen.cs" />
+    <Compile Include="IOModels\RS232SerialPortControlBase.cs" />
+    <Compile Include="IOModels\RS232SerialPortInput.cs" />
+    <Compile Include="IOModels\RS232SerialPortInputWgWithItemCode.cs" />
+    <Compile Include="IOModels\RS232SerialPortOutput.cs" />
+    <Compile Include="IOModels\SerialPortInfoDetectorVM.cs" />
+    <Compile Include="MeasuringModule.cs" />
+    <Compile Include="MeasuringSearchLookupDilog.xaml.cs">
+      <DependentUpon>MeasuringSearchLookupDilog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MeasuringSearchView.xaml.cs">
+      <DependentUpon>MeasuringSearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PartMoveItemGroupingReportView.xaml.cs">
+      <DependentUpon>PartMoveItemGroupingReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessPlanSearchView.xaml.cs">
+      <DependentUpon>ProcessPlanSearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PartTransferItemSearchView.xaml.cs">
+      <DependentUpon>PartTransferItemSearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PartTransferReceiveSearchView.xaml.cs">
+      <DependentUpon>PartTransferReceiveSearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PartTransfer_ReceiveEditorView.xaml.cs">
+      <DependentUpon>PartTransfer_ReceiveEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessPlanImportedEditorView.xaml.cs">
+      <DependentUpon>ProcessPlanImportedEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProcessPlanImportedSearchView.xaml.cs">
+      <DependentUpon>ProcessPlanImportedSearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\WgRecordsGroupingReportViewer.xaml.cs">
+      <DependentUpon>WgRecordsGroupingReportViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\PartTransferPrintForm.xaml.cs">
+      <DependentUpon>PartTransferPrintForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\PartMoveItemGroupingReportView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PartMoveItemGroupingReportView.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\PartTransferItemSearchView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PartTransferItemSearchView.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\PartTransferReceiveSearchView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PartTransferReceiveSearchView.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\PartTransfer_ReceiveEditorView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PartTransfer_ReceiveEditorView.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ProcessPlanImportedEditorView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProcessPlanImportedEditorView.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ProcessPlanImportedSearchView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProcessPlanImportedSearchView.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ProcessPlanSearchView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProcessPlanSearchView.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SerialPortInfoDetectorView.xaml.cs">
+      <DependentUpon>SerialPortInfoDetectorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SplitUpEditorView.xaml.cs">
+      <DependentUpon>SplitUpEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\MeasuringSearchVM.cs" />
+    <Compile Include="ViewModels\PartMoveItemGroupingReportVM.cs" />
+    <Compile Include="ViewModels\ProcessPlanEditorVM.cs" />
+    <Compile Include="ViewModels\PartTransferItemEditorVM.cs" />
+    <Compile Include="ViewModels\ProcessPlanImportedEditorVM.cs" />
+    <Compile Include="ViewModels\ProcessPlanSearchOnlyVM.cs" />
+    <Compile Include="ViewModels\ProcessPlanSearchVM.cs" />
+    <Compile Include="ViewModels\ProcessPlanImportedSearchVM.cs" />
+    <Compile Include="ViewModels\PartTransferItemSearchVM.cs" />
+    <Compile Include="ViewModels\PartTransferReceiveSearchVM.cs" />
+    <Compile Include="ViewModels\PartTransfer_ReceiveEditorVM.cs" />
+    <Compile Include="ViewModels\SplitUpEditorVM.cs" />
+    <Compile Include="ViewModels\TransactionIOEditorVM.cs" />
+    <Compile Include="ViewModels\TransactionSearchVM.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cet.Core.Utility\Cet.Core.Utility.csproj">
+      <Project>{9346bbd1-7bc7-47c6-b747-b4a147901b6f}</Project>
+      <Name>Cet.Core.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cet.Core\Cet.Core.csproj">
+      <Project>{3a9f6890-3d54-49e8-9482-af67786c0da8}</Project>
+      <Name>Cet.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cet.Hw.Core.AppServiceContract\Cet.Hw.Core.AppServiceContract.csproj">
+      <Project>{3F05C693-1AE0-4F4C-80C8-EFD3F3940DAC}</Project>
+      <Name>Cet.Hw.Core.AppServiceContract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cet.Hw.Core.SmartClient\Cet.Hw.Core.SmartClient.csproj">
+      <Project>{6aa5270d-8327-4c9d-ad63-7424eeb87210}</Project>
+      <Name>Cet.Hw.Core.SmartClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cet.Hw.Core\Cet.Hw.Core.csproj">
+      <Project>{9FB76912-0215-4BB2-ACBB-D62E84C7CA54}</Project>
+      <Name>Cet.Hw.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cet.SmartClient.Client\Cet.SmartClient.Client.csproj">
+      <Project>{61c439d8-6b62-464e-84c8-53353374f0f9}</Project>
+      <Name>Cet.SmartClient.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DemoTalaadThai.AppService\DemoTalaadThai.AppService.csproj">
+      <Project>{c5ac03b2-62c3-4e0f-84b7-434046759957}</Project>
+      <Name>DemoTalaadThai.AppService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DemoTalaadThaiWg.AppServiceContract\DemoTalaadThaiWg.AppServiceContract.csproj">
+      <Project>{C0D7A887-1E8F-4702-91D8-D5FD2049D941}</Project>
+      <Name>DemoTalaadThaiWg.AppServiceContract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DemoTalaadThaiWg.Domain\DemoTalaadThaiWg.Domain.csproj">
+      <Project>{2b6aae41-b077-4750-a569-1780878c0c18}</Project>
+      <Name>DemoTalaadThaiWg.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Measurement.AppServiceContract\Measurement.AppServiceContract.csproj">
+      <Project>{c8cb4689-831f-4c5d-8250-7e73501f5c50}</Project>
+      <Name>Measurement.AppServiceContract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Measurement\Measurement.csproj">
+      <Project>{208fca99-1fd4-4ab5-b07c-dbb836995460}</Project>
+      <Name>Measurement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\References\Telerik\Themes.Implicit\WPF40\Windows8\Windows8_WPF.csproj">
+      <Project>{87d19eaa-2579-4660-94ea-f45b05ef6fd8}</Project>
+      <Name>Windows8_WPF</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\PartRecordsPrintForm.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\WgRecordsGroupingReport.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\PartMoveItemGroupingReportView.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PartMoveItemGroupingReportView.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\PartMoveItemGroupingReportView.th.resx" />
+    <EmbeddedResource Include="Resources\PartTransferItemSearchView.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PartTransferItemSearchView.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\PartTransferItemSearchView.th.resx" />
+    <EmbeddedResource Include="Resources\PartTransferReceiveSearchView.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PartTransferReceiveSearchView.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\PartTransferReceiveSearchView.th.resx" />
+    <EmbeddedResource Include="Resources\PartTransfer_ReceiveEditorView.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PartTransfer_ReceiveEditorView.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\PartTransfer_ReceiveEditorView.th.resx" />
+    <EmbeddedResource Include="Resources\ProcessPlanImportedEditorView.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProcessPlanImportedEditorView.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ProcessPlanImportedEditorView.th.resx" />
+    <EmbeddedResource Include="Resources\ProcessPlanImportedSearchView.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProcessPlanImportedSearchView.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ProcessPlanImportedSearchView.th.resx" />
+    <EmbeddedResource Include="Resources\ProcessPlanSearchView.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProcessPlanSearchView.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ProcessPlanSearchView.th.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MeasuringSearchLookupDilog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MeasuringSearchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PartMoveItemGroupingReportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ProcessPlanSearchView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PartTransferItemSearchView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PartTransferReceiveSearchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PartTransfer_ReceiveEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProcessPlanImportedEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProcessPlanImportedSearchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Reports\WgRecordsGroupingReportViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Reports\PartTransferPrintForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SerialPortInfoDetectorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SplitUpEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\Measurement.MeasuringItemWithPlanData.datasource" />
+    <None Include="Properties\DataSources\Measurement.MeasuringMoveItemData.datasource" />
+    <None Include="Properties\DataSources\Measurement.MeasuringMoveItemGroupingData.datasource" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
