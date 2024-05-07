@@ -1,0 +1,7 @@
+D:\2020_Works\TalaadThai-WeightRecord\trunk\01_Codes\References\Telerik\Themes.Implicit\WPF40\Windows8\Bin\Debug\Telerik.Windows.Themes.Windows8.dll
+D:\2020_Works\TalaadThai-WeightRecord\trunk\01_Codes\References\Telerik\Themes.Implicit\WPF40\Windows8\Bin\Debug\Telerik.Windows.Themes.Windows8.pdb
+D:\2020_Works\TalaadThai-WeightRecord\trunk\01_Codes\References\Telerik\Themes.Implicit\WPF40\Windows8\obj\Debug\Telerik.Windows.Themes.Windows8.g.resources
+D:\2020_Works\TalaadThai-WeightRecord\trunk\01_Codes\References\Telerik\Themes.Implicit\WPF40\Windows8\obj\Debug\Telerik.Windows.Themes.Windows8.dll
+D:\2020_Works\TalaadThai-WeightRecord\trunk\01_Codes\References\Telerik\Themes.Implicit\WPF40\Windows8\obj\Debug\Telerik.Windows.Themes.Windows8.pdb
+D:\2020_Works\TalaadThai-WeightRecord\trunk\01_Codes\References\Telerik\Themes.Implicit\WPF40\Windows8\obj\Debug\Windows8_WPF.csproj.AssemblyReference.cache
+D:\2020_Works\TalaadThai-WeightRecord\trunk\01_Codes\References\Telerik\Themes.Implicit\WPF40\Windows8\obj\Debug\Windows8_WPF.csproj.CoreCompileInputs.cache
